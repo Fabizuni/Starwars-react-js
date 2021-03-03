@@ -12,17 +12,53 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			character: [],
+			planets: [],
+			characterEntity: {},
+			planetsEntity: {},
+			favorites: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			addFavorite: (entity, id) => {
+				const store = getStore();
+				const hasEntity = store.favorites.find(favorite => {
+					return id === favorite.id && favorite.entity === entity;
+				});
+
+				if (!hasEntity) {
+					setStore({ favorites: store.favorites.concat({ entity, id }) });
+				}
 			},
+			removeFavorite: (entity, id) => {
+				const store = getStore();
+				const filteredFavorites = store.favorites.filter(favorite => {
+					return id !== favorite.id;
+				});
+
+				setStore({ favorites: filteredFavorites });
+			},
+
 			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+				fetch("https://3000-emerald-gull-pqxz3c8r.ws-us03.gitpod.io/character")
+					.then(res => res.json())
+					.then(data => {
+						return setStore({ character: data });
+					});
+
+				fetch("https://3000-emerald-gull-pqxz3c8r.ws-us03.gitpod.io/planets")
+					.then(res => res.json())
+					.then(data => {
+						return setStore({ planets: data });
+					});
+			},
+			fetchEntity: (entity, id) => {
+				fetch(`https://3000-emerald-gull-pqxz3c8r.ws-us03.gitpod.io/${entity}/${id}`)
+					.then(res => res.json())
+					.then(data => {
+						return setStore({ [`${entity}Entity`]: data });
+					});
 			},
 			changeColor: (index, color) => {
 				//get the store
