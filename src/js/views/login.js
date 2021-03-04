@@ -1,24 +1,22 @@
 import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 
-export const Register = () => {
-	const [name, setName] = useState("");
-	const [lastName, setLastName] = useState("");
+export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [pass, setPass] = useState("");
 	const [redirect, setRedirect] = useState(false);
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		if (email === "" || pass === "" || name === "" || lastName === "") {
-			alert("Su nombre , correo y contraseña son requeridos");
+		if (email === "" || pass === "") {
+			alert("correo y contraseña son requeridos");
 		}
-		console.log(name, lastName, email, pass);
+		console.log(email, pass);
 
 		// FETCH
-		const data = { email: email, password: pass, name: name, last_name: lastName };
+		const data = { email: email, password: pass };
 
-		fetch("https://3000-lavender-skink-b7m9ieww.ws-us03.gitpod.io/register", {
+		fetch("https://3000-lavender-skink-b7m9ieww.ws-us03.gitpod.io/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -28,6 +26,7 @@ export const Register = () => {
 			.then(response => response.json())
 			.then(data => {
 				console.log("Success:", data);
+				sessionStorage.setItem("u_token", data.token);
 				setRedirect(true);
 			})
 			.catch(error => {
@@ -40,26 +39,6 @@ export const Register = () => {
 	return (
 		<div className="text-center mt-5 d-flex justify-content-center align-items-center">
 			<form style={{ width: "400px" }} onSubmit={e => handleSubmit(e)}>
-				<div className="form-floating mb-3">
-					<input
-						type="name"
-						className="form-control"
-						id="floatingInput"
-						placeholder="Enter your name"
-						onChange={e => setName(e.target.value)}
-					/>
-					<label htmlFor="floatingInput">Name</label>
-				</div>
-				<div className="form-floating mb-3">
-					<input
-						type="lastName"
-						className="form-control"
-						id="floatingInput"
-						placeholder="Enter your last name"
-						onChange={e => setLastName(e.target.value)}
-					/>
-					<label htmlFor="floatingInput">Last name </label>
-				</div>
 				<div className="form-floating mb-3">
 					<input
 						type="email"
@@ -75,14 +54,14 @@ export const Register = () => {
 						type="password"
 						className="form-control"
 						id="floatingPassword"
-						placeholder="Enter a password"
+						placeholder="Password"
 						onChange={e => setPass(e.target.value)}
 					/>
 					<label htmlFor="floatingPassword">Password</label>
 				</div>
-				<input type="submit" className="btn btn-primary" value="Register" />
+				<input type="submit" className="btn btn-primary" value="Login" />
 			</form>
-			{redirect ? <Redirect to="/login" /> : ""}
+			{redirect ? <Redirect to="/" /> : ""}
 		</div>
 	);
 };

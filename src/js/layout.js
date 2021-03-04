@@ -12,6 +12,7 @@ import { Navigation } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Profile } from "./views/Profile";
 import { Register } from "./views/register";
+import { Login } from "./views/login";
 
 //create your first component
 const Layout = props => {
@@ -33,6 +34,9 @@ const Layout = props => {
 						</Route>
 						<Route exact path="/register">
 							<Register />
+						</Route>
+						<Route exact path="/login">
+							<Login />
 						</Route>
 						<Route exact path="/demo">
 							<Demo />
