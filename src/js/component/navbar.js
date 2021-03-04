@@ -35,8 +35,7 @@ export const Navigation = () => {
 								/>
 							</Navbar.Brand>
 						</Navbar>
-						<Navbar.Toggle aria-controls="ml-auto basic-navbar-nav" />
-						<Navbar.Collapse id="basic-navbar-nav">
+						<Navbar className="my-2">
 							<Link
 								className="btn btn-lg text-light primary "
 								bsStyle="primary"
@@ -44,6 +43,16 @@ export const Navigation = () => {
 								to={`/register/`}>
 								Register
 							</Link>
+							<Link
+								className="btn btn-lg text-light primary "
+								bsStyle="primary"
+								style={{ width: " 150px", background: "blue" }}
+								to={`/login/`}>
+								Login
+							</Link>
+						</Navbar>
+						<Navbar.Toggle aria-controls="ml-auto basic-navbar-nav" />
+						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="ml-auto text-white" style={{ width: " 150px" }}>
 								<NavDropdown
 									className="rounded bg-light text-dark"
