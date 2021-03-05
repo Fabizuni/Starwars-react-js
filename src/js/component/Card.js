@@ -59,7 +59,7 @@ Card.propTypes = {
 	addFavorite: PropTypes.func,
 	person: PropTypes.object,
 	planet: PropTypes.object,
-	id: PropTypes.string
+	id: PropTypes.number
 };
 
 PlanetCard.propTypes = {

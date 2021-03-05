@@ -11,6 +11,9 @@ const PersonProfile = ({ person }) => {
 			<div className="row">
 				<h1 className="card-title">{person.name}</h1>
 			</div>
+			<div className="row">
+				<span className="card-title">{person.description}</span>
+			</div>
 			<div className="row my-3 d-flex align-content-start flex-wrap">
 				<div className="col-3 my-2">Gender: {person.gender}</div>
 				<div className="col-3 my-2">Hair color: {person.hair_color}</div>
@@ -29,6 +32,9 @@ const PlanetProfile = ({ planet }) => {
 		<>
 			<div className="row">
 				<h1 className="card-title">{planet.name}</h1>
+			</div>
+			<div className="row">
+				<span className="card-title">{planet.description}</span>
 			</div>
 			<div className="row my-3 d-flex align-content-start flex-wrap">
 				<div className="col-3 my-2">Population: {planet.population}</div>
@@ -60,7 +66,7 @@ export const Profile = () => {
 	return (
 		<div
 			className="container mb-5 my-5"
-			style={{ background: "grey", maxWidth: "1038px", paddingLeft: "20px", paddingTop: "20px" }}>
+			style={{ background: "grey", maxWidth: "1338px", paddingTop: "192px", paddingBottom: "250px" }}>
 			<div className="row">
 				<img
 					className="card-img-top"
@@ -69,7 +75,7 @@ export const Profile = () => {
 					alt="Card image cap"
 				/>
 			</div>
-			<div style={{ color: "white" }}>
+			<div style={{ color: "white", paddingLeft: "42px" }}>
 				{characterEntity.name ? (
 					<PersonProfile person={characterEntity} />
 				) : (

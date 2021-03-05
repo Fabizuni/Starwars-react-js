@@ -21,7 +21,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			loadFavorite: () => {
+				const testPrivado = () => {
+					//const data = { object_id: id, tipo: entity };
+					fetch("https://3000-gray-marlin-8q5nd8h3.ws-us03.gitpod.io/users/favorites", {
+						method: "GET",
+						//mode: "cors",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: "Bearer " + sessionStorage.getItem("u_token")
+						}
+						//body: JSON.stringify(data)
+					})
+						.then(response => response.json())
+						.then(data => {
+							console.log("Success:", data);
+							// sessionStorage.setItem("u_token", data.token);
+							// setRedirect(true);
+						})
+						.catch(error => {
+							console.error("Error:", error);
+						});
+				};
+				testPrivado();
+				const store = getStore();
+			},
+
 			addFavorite: (entity, id) => {
+				const testPrivado = () => {
+					const data = { object_id: id, tipo: entity };
+					fetch("https://3000-gray-marlin-8q5nd8h3.ws-us03.gitpod.io/users/favorites", {
+						method: "POST",
+						//mode: "cors",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: "Bearer " + sessionStorage.getItem("u_token")
+						},
+						body: JSON.stringify(data)
+					})
+						.then(response => response.json())
+						.then(data => {
+							console.log("Success:", data);
+							// sessionStorage.setItem("u_token", data.token);
+							// setRedirect(true);
+						})
+						.catch(error => {
+							console.error("Error:", error);
+						});
+				};
+				testPrivado();
 				const store = getStore();
 				const hasEntity = store.favorites.find(favorite => {
 					return id === favorite.id && favorite.entity === entity;
@@ -41,20 +89,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			loadSomeData: () => {
-				fetch("https://3000-lavender-skink-b7m9ieww.ws-us03.gitpod.io/character")
+				fetch("https://3000-gray-marlin-8q5nd8h3.ws-us03.gitpod.io/character")
 					.then(res => res.json())
 					.then(data => {
 						return setStore({ character: data });
 					});
 
-				fetch("https://3000-lavender-skink-b7m9ieww.ws-us03.gitpod.io/planets")
+				fetch("https://3000-gray-marlin-8q5nd8h3.ws-us03.gitpod.io/planets")
 					.then(res => res.json())
 					.then(data => {
 						return setStore({ planets: data });
 					});
 			},
 			fetchEntity: (entity, id) => {
-				fetch(`https://3000-lavender-skink-b7m9ieww.ws-us03.gitpod.io/${entity}/${id}`)
+				fetch(`https://3000-gray-marlin-8q5nd8h3.ws-us03.gitpod.io/${entity}/${id}`)
 					.then(res => res.json())
 					.then(data => {
 						return setStore({ [`${entity}Entity`]: data });

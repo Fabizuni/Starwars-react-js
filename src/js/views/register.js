@@ -18,7 +18,7 @@ export const Register = () => {
 		// FETCH
 		const data = { email: email, password: pass, name: name, last_name: lastName };
 
-		fetch("https://3000-lavender-skink-b7m9ieww.ws-us03.gitpod.io/register", {
+		fetch("https://3000-gray-marlin-8q5nd8h3.ws-us03.gitpod.io/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -38,8 +38,16 @@ export const Register = () => {
 	};
 
 	return (
-		<div className="text-center mt-5 d-flex justify-content-center align-items-center">
+		<div
+			className="container text-center mt-5 d-flex justify-content-center align-items-center"
+			style={{ Maxwidth: "750px", background: "white", paddingTop: "92px", paddingBottom: "92px" }}>
 			<form style={{ width: "400px" }} onSubmit={e => handleSubmit(e)}>
+				<div className="row">
+					<img
+						style={{ Maxwidth: "422px", width: "425px", marginBottom: "20px" }}
+						src="https://i.ytimg.com/vi/3nr4tRNE8QE/maxresdefault.jpg"
+					/>
+				</div>
 				<div className="form-floating mb-3">
 					<input
 						type="name"

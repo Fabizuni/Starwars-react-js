@@ -26,29 +26,32 @@ export const Navigation = () => {
 					<Navbar className="sticky-top" style={{ height: "90px" }} id="navId">
 						<Navbar>
 							<Navbar.Brand href="#home">
-								<img
-									src="https://medialab.unmsm.edu.pe/chiqaqnews/wp-content/uploads/2021/01/dia-star-wars.jpg"
-									width="200"
-									height="100"
-									className="d-inline-block align-top"
-									alt="React Bootstrap logo"
-								/>
+								<Link to="/">
+									<img
+										src="https://medialab.unmsm.edu.pe/chiqaqnews/wp-content/uploads/2021/01/dia-star-wars.jpg"
+										width="200"
+										height="100"
+										className="d-inline-block align-top"
+										alt="React Bootstrap logo"
+									/>
+								</Link>
 							</Navbar.Brand>
 						</Navbar>
-						<Navbar className="my-2">
+						<Navbar className="mx-2">
 							<Link
-								className="btn btn-lg text-light primary "
+								className="btn btn-md text-light primary "
 								bsStyle="primary"
-								style={{ width: " 150px", background: "blue" }}
-								to={`/register/`}>
-								Register
-							</Link>
-							<Link
-								className="btn btn-lg text-light primary "
-								bsStyle="primary"
-								style={{ width: " 150px", background: "blue" }}
+								style={{ width: " 120px", background: "blue", marginRight: "10px" }}
 								to={`/login/`}>
 								Login
+							</Link>
+							<Link to="/">
+								<button
+									className="btn btn-md btn-danger"
+									style={{ width: " 120px" }}
+									onClick={() => sessionStorage.clear()}>
+									Logout
+								</button>
 							</Link>
 						</Navbar>
 						<Navbar.Toggle aria-controls="ml-auto basic-navbar-nav" />
@@ -65,7 +68,7 @@ export const Navigation = () => {
 												{favorite.name}
 												<span onClick={onRemoveFavorite(actions.removeFavorite, favorite)}>
 													{" "}
-													X
+													<i className="fas fa-trash-alt" />
 												</span>
 											</NavDropdown.Item>
 										);

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
 	const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ export const Login = () => {
 		// FETCH
 		const data = { email: email, password: pass };
 
-		fetch("https://3000-lavender-skink-b7m9ieww.ws-us03.gitpod.io/login", {
+		fetch("https://3000-gray-marlin-8q5nd8h3.ws-us03.gitpod.io/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -37,8 +38,18 @@ export const Login = () => {
 	};
 
 	return (
-		<div className="text-center mt-5 d-flex justify-content-center align-items-center">
+		<div
+			className="container text-center mt-5 d-flex justify-content-center align-items-center rounded"
+			style={{ maxWidth: "950px", background: "white", paddingTop: "92px", paddingBottom: "92px" }}>
 			<form style={{ width: "400px" }} onSubmit={e => handleSubmit(e)}>
+				<div>
+					<img
+						src="https://i.ytimg.com/vi/3nr4tRNE8QE/maxresdefault.jpg"
+						className="card-img-top"
+						style={{ marginBottom: "16px" }}
+						alt="welcome"
+					/>
+				</div>
 				<div className="form-floating mb-3">
 					<input
 						type="email"
@@ -60,6 +71,15 @@ export const Login = () => {
 					<label htmlFor="floatingPassword">Password</label>
 				</div>
 				<input type="submit" className="btn btn-primary" value="Login" />
+				<div>
+					<Link
+						className="btn btn-lg text-light primary "
+						bsStyle="primary"
+						style={{ width: " 150px", background: "blue", marginTop: "16px" }}
+						to={`/register/`}>
+						Register
+					</Link>
+				</div>
 			</form>
 			{redirect ? <Redirect to="/" /> : ""}
 		</div>
