@@ -45,14 +45,19 @@ export const Navigation = () => {
 								to={`/login/`}>
 								Login
 							</Link>
-							<Link to="/">
-								<button
-									className="btn btn-md btn-danger"
-									style={{ width: " 120px" }}
-									onClick={() => sessionStorage.clear()}>
-									Logout
-								</button>
-							</Link>
+
+							{location.pathname == "/home" ? (
+								<Link to="/">
+									<button
+										className="btn btn-md btn-danger"
+										style={{ width: " 120px" }}
+										onClick={() => sessionStorage.clear()}>
+										Logout
+									</button>
+								</Link>
+							) : (
+								""
+							)}
 						</Navbar>
 						<Navbar.Toggle aria-controls="ml-auto basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
